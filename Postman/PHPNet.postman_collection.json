@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "54e3ca55-523c-400b-83db-3ff6d133023a",
+		"name": "PHPNet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost/tutorialspoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost/tutorialspoint"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/tutorialspoint/?dbname=phpdb&tablename=products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tutorialspoint/restapi2mysql.php?dbname=phpdb&tablename=employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tutorialspoint",
+						"restapi2mysql.php"
+					],
+					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "employee"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/tutorialspoint/restapi1.php?keypara=paravalue&ke=234&dbname=phpnet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tutorialspoint/restapi.php?keypara=paravalue&ke=234&dbname=phpnet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tutorialspoint",
+						"restapi.php"
+					],
+					"query": [
+						{
+							"key": "keypara",
+							"value": "paravalue"
+						},
+						{
+							"key": "ke",
+							"value": "234"
+						},
+						{
+							"key": "dbname",
+							"value": "phpnet"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
