@@ -1,0 +1,17 @@
+
+http://www.tutorialspoint.com/articles/run-a-php-program-in-xampp-server
+
+https://www.w3schools.com/php/php_mysql_intro.asp
+
+https://www.w3schools.com/sql/default.asp
+
+https://www.php.net/manual/en/
+
+
+---------------------------------------------------------
+
+https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
+
+https://github.com/bencentra/php-rest-api
+
+---------------------------------------------------------

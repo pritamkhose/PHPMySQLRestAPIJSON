@@ -1,0 +1,22 @@
+https://pritam4.000webhostapp.com
+
+https://www.000webhost.com/members/website/pritam4/build
+
+Upload Production files
+https://files.000webhost.com/
+
+https://www.000webhost.com/members/website/pritam4/database
+
+https://databases-auth.000webhost.com/index.php
+
+https://databases-auth.000webhost.com/db_structure.php?server=1&db=id10727003_pritam
+---------------------------------------------------------
+
+DELETE and PUT methods not working on 000webhost
+https://www.000webhost.com/forum/t/delete-and-put-methods-not-working/61170
+
+---------------------------------------------------------
+
+https://remotemysql.com/databases.php
+
+---------------------------------------------------------
