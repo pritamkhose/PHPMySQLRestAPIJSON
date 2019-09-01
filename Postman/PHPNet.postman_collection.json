@@ -18,7 +18,18 @@
 			"name": "http://localhost/PHPMySQLRestAPIJSON/restapi.php?keypara=paravalue&ke=234&dbname=phpnet",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": \"1\",\r\n\"name\": \"LG P880 4X HD\",\r\n\"description\": \"My first awesome phone!\",\r\n\"price\": \"336\",\r\n\"category_id\": \"3\",\r\n\"created\": \"2014-06-01 01:12:26\",\r\n\"modified\": \"2014-05-31 17:12:26\"\r\n}"
+				},
 				"url": {
 					"raw": "http://localhost/PHPMySQLRestAPIJSON/restapi.php?keypara=paravalue&ke=234&dbname=phpnet",
 					"protocol": "http",
@@ -191,6 +202,43 @@
 						""
 					],
 					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "products"
+						},
+						{
+							"key": "id",
+							"value": "31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/PHPMySQLRestAPIJSON/?action=DELETE&dbname=phpdb&tablename=products&id=31",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/?action=DELETE&dbname=phpdb&tablename=products&id=31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPMySQLRestAPIJSON",
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "DELETE"
+						},
 						{
 							"key": "dbname",
 							"value": "phpdb"

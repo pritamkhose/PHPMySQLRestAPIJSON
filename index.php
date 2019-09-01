@@ -21,7 +21,11 @@ try {
             } else {
                 $dbname = $db; //$queries['dbname'];
                 $tablename = $queries['tablename'];
-                switch ($_SERVER['REQUEST_METHOD']) {
+                $action = $_SERVER['REQUEST_METHOD'];
+                if (!empty($queries['action'])){
+                    $action = $queries['action'];
+                }
+                switch ($action) {
                     case 'GET':
                         doGet();
                         break;
