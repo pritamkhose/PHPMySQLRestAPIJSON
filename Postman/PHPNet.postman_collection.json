@@ -6,56 +6,27 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost/tutorialspoint",
+			"name": "http://localhost/PHPMySQLRestAPIJSON",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost/tutorialspoint"
+				"url": "http://localhost/PHPMySQLRestAPIJSON"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost/tutorialspoint/?dbname=phpdb&tablename=products",
+			"name": "http://localhost/PHPMySQLRestAPIJSON/restapi.php?keypara=paravalue&ke=234&dbname=phpnet",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/tutorialspoint/restapi2mysql.php?dbname=phpdb&tablename=employee",
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/restapi.php?keypara=paravalue&ke=234&dbname=phpnet",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
-						"tutorialspoint",
-						"restapi2mysql.php"
-					],
-					"query": [
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "employee"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/tutorialspoint/restapi1.php?keypara=paravalue&ke=234&dbname=phpnet",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/tutorialspoint/restapi.php?keypara=paravalue&ke=234&dbname=phpnet",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"tutorialspoint",
+						"PHPMySQLRestAPIJSON",
 						"restapi.php"
 					],
 					"query": [
@@ -70,6 +41,167 @@
 						{
 							"key": "dbname",
 							"value": "phpnet"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=showtable",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=showtable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPMySQLRestAPIJSON",
+						""
+					],
+					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "products"
+						},
+						{
+							"key": "info",
+							"value": "showtable"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=tabledetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=tabledetails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPMySQLRestAPIJSON",
+						""
+					],
+					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "products"
+						},
+						{
+							"key": "info",
+							"value": "tabledetails"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPMySQLRestAPIJSON",
+						""
+					],
+					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "products"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPMySQLRestAPIJSON",
+						""
+					],
+					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "products"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=31",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPMySQLRestAPIJSON",
+						""
+					],
+					"query": [
+						{
+							"key": "dbname",
+							"value": "phpdb"
+						},
+						{
+							"key": "tablename",
+							"value": "products"
+						},
+						{
+							"key": "id",
+							"value": "31"
 						}
 					]
 				}
