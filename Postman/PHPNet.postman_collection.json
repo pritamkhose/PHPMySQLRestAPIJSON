@@ -6,6 +6,313 @@
 	},
 	"item": [
 		{
+			"name": "DB details",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=showtable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=showtable",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "showtable"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=tabledetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=tabledetails",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "tabledetails"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": \"1\",\r\n\t\"name\": \"Pritam1\",\r\n\t\"description\": \"Pritam first awesome phone!\",\r\n\t\"price\": \"330\",\r\n\t\"category_id\": \"103\",\r\n\t\"created\": \"2019-06-01 01:22:37\",\r\n\t\"modified\": \"2014-05-31 17:52:24\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "id",
+									"value": "46"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"47\",\r\n    \"name\": \"LG P880 4X HD\",\r\n    \"description\": \"My first awesome phone!\",\r\n    \"price\": \"33\",\r\n    \"category_id\": \"3\",\r\n    \"created\": \"2014-06-01 01:12:26\",\r\n    \"modified\": \"2014-05-31 17:12:26\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=31",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "id",
+									"value": "31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?action=DELETE&dbname=phpdb&tablename=products&id=31",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?action=DELETE&dbname=phpdb&tablename=products&id=31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "DELETE"
+								},
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "id",
+									"value": "31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "http://localhost/PHPMySQLRestAPIJSON",
 			"request": {
 				"method": "GET",
@@ -52,204 +359,6 @@
 						{
 							"key": "dbname",
 							"value": "phpnet"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=showtable",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=showtable",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"PHPMySQLRestAPIJSON",
-						""
-					],
-					"query": [
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "products"
-						},
-						{
-							"key": "info",
-							"value": "showtable"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=tabledetails",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=tabledetails",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"PHPMySQLRestAPIJSON",
-						""
-					],
-					"query": [
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "products"
-						},
-						{
-							"key": "info",
-							"value": "tabledetails"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"PHPMySQLRestAPIJSON",
-						""
-					],
-					"query": [
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "products"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"PHPMySQLRestAPIJSON",
-						""
-					],
-					"query": [
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "products"
-						},
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=31",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&id=31",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"PHPMySQLRestAPIJSON",
-						""
-					],
-					"query": [
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "products"
-						},
-						{
-							"key": "id",
-							"value": "31"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost/PHPMySQLRestAPIJSON/?action=DELETE&dbname=phpdb&tablename=products&id=31",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost/PHPMySQLRestAPIJSON/?action=DELETE&dbname=phpdb&tablename=products&id=31",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"PHPMySQLRestAPIJSON",
-						""
-					],
-					"query": [
-						{
-							"key": "action",
-							"value": "DELETE"
-						},
-						{
-							"key": "dbname",
-							"value": "phpdb"
-						},
-						{
-							"key": "tablename",
-							"value": "products"
-						},
-						{
-							"key": "id",
-							"value": "31"
 						}
 					]
 				}

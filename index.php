@@ -22,7 +22,7 @@ try {
                 $dbname = $db; //$queries['dbname'];
                 $tablename = $queries['tablename'];
                 $action = $_SERVER['REQUEST_METHOD'];
-                if (!empty($queries['action'])){
+                if (!empty($queries['action'])) {
                     $action = $queries['action'];
                 }
                 switch ($action) {
@@ -32,12 +32,12 @@ try {
                     case 'DELETE':
                         doDelete();
                         break;
-                    // case 'POST':
-                    //     do_post($request);
-                    // break;
+                    case 'POST':
+                        doUpdate();
+                        break;
                     // case 'PUT':
-                    //     do_put($request);
-                    // break;
+                    //     doUpdate();
+                    //     break;
                     // case 'OPTIONS':
                     //     do_option($request);
                     // break;
@@ -112,6 +112,101 @@ function doDelete()
     }
 }
 
+function doUpdate()
+{
+    global $dbhost, $dbuser, $dbpass, $dbname, $tablename, $queries;
+    $body = json_decode(file_get_contents('php://input'), true);
+    $sql = 'DESCRIBE ' . $dbname . '.' . $tablename . ';';
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    $retval = mysqli_query($conn, $sql);
+    $colArr = array();
+    $colTypeArr = array();
+    while ($row = mysqli_fetch_array($retval)) {
+        $colArr[] = $row[0];
+        $colTypeArr[] = $row[1];
+    }
+    if (empty($queries['id'])) { // Create or Insert
+        doCreate($colArr, $colTypeArr, $body);
+    } else { // Update
+        $colIDName = $colArr[0];
+        unset($colArr[0]); // remove first element ID
+        $colName = implode(", ", $colArr);
+        $colValue = '';
+        $i = 1;
+        foreach ($colArr as $value) {
+            if (array_key_exists($value, $body)) {
+                $colty = $colTypeArr[$i];
+                if ((strpos($colty, 'int') !== false) || ((strpos($colty, 'decimal') !== false)) ||
+                    (strpos($colty, 'double') !== false) || ((strpos($colty, 'float') !== false))) {
+                        $colty = $body[$value];
+                } else {
+                        $colty = '\'' . $body[$value] . '\'';
+                }
+                $colValue = $colValue . '`'.$value.'` = '. $colty . ', ';
+            }
+            $i++;
+        }
+        $colValue = substr($colValue, 0, (strlen($colValue) - 2));
+
+        $sql = 'UPDATE ' . $dbname . '.' . $tablename . ' SET ' . $colValue . ' WHERE `' . $colIDName . '` = ' . $queries['id'] . ';';
+        // httpresponse(200, $sql, null);
+        $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        if(mysqli_query($conn, $sql)){
+            $HttpStausCode = 204;
+            if (mysqli_affected_rows($conn) == 1) {
+                $HttpStausCode = 200;
+            }
+            $sql = 'SELECT * FROM ' . $dbname . '.' . $tablename . ' where `' . $colIDName . '` = ' . $queries['id'] . ';';
+            $retval = mysqli_query($conn, $sql);
+            httpresponse($HttpStausCode, mysqli_fetch_object($retval), null);
+        } else {
+            httpresponse(200, array('status' => 'error', 'msg' => mysqli_error($conn), 'sql' => $sql), null);
+        }
+    }
+}
+
+function doCreate($colArr, $colTypeArr, $body)
+{
+    global $dbhost, $dbuser, $dbpass, $dbname, $tablename, $queries;
+    $colIDName = $colArr[0];
+    unset($colArr[0]); // remove first element ID
+    $colName = implode(", ", $colArr);
+    $colValue = '';
+    $i = 1;
+    foreach ($colArr as $value) {
+        $colty = $colTypeArr[$i];
+        if ((strpos($colty, 'int') !== false) || ((strpos($colty, 'decimal') !== false)) ||
+            (strpos($colty, 'double') !== false) || ((strpos($colty, 'float') !== false))) {
+            if (array_key_exists($value, $body)) {
+                $colty = $body[$value];
+            } else {
+                $colty = 0;
+            }
+        } else {
+            if (array_key_exists($value, $body)) {
+                $colty = '\'' . $body[$value] . '\'';
+            } else {
+                $colty = '\'\'';
+            }
+        }
+        $colValue = $colValue . $colty . ', ';
+        $i++;
+    }
+    $colValue = substr($colValue, 0, (strlen($colValue) - 2));
+
+    $sql = 'Insert INTO ' . $dbname . '.' . $tablename . ' (' . $colName . ') VALUES (' . $colValue . ');';
+    // httpresponse(201, $sql, null);
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    $retval = mysqli_query($conn, $sql);
+    if (mysqli_affected_rows($conn) < 0) {
+        httpresponse(201, array('status' => 'error', 'msg' => 'Data not Created', 'sql' => $sql), null);
+    } else {
+        $sql = 'SELECT * FROM ' . $dbname . '.' . $tablename . ' where `' . $colIDName . '` = ' . mysqli_insert_id($conn) . ';';
+        $retval = mysqli_query($conn, $sql);
+        httpresponse(201, mysqli_fetch_object($retval), null);
+    }
+}
+
 function httpresponse($status, $result, $error)
 {
     // https://www.php.net/manual/en/function.http-response-code.php
@@ -119,7 +214,7 @@ function httpresponse($status, $result, $error)
     header('Content-type: application/json');
     $requestStatus = _requestStatus($status);
     header("HTTP/1.1 " . $status . " " . $requestStatus);
-    if ($status == 200) {
+    if ($status == 200 || $status == 201|| $status == 204) {
         echo json_encode($result, JSON_PRETTY_PRINT);
     } else if (!empty($requestStatus)) {
         echo json_encode(array('status' => 'error', 'msg' => $requestStatus . " - " . $error), JSON_PRETTY_PRINT);
@@ -133,6 +228,8 @@ function _requestStatus($code)
 {
     $status = array(
         200 => 'OK',
+        201 => 'Created',
+        204 => 'No Content',
         404 => 'Not Found',
         401 => 'Unauthorized',
         405 => 'Method Not Allowed',
