@@ -140,6 +140,232 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "search"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&order=asc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&order=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "search"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&search=pritam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&search=pritam",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "search"
+								},
+								{
+									"key": "search",
+									"value": "pritam"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&search=pritam&key=name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&search=pritam&key=name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "search"
+								},
+								{
+									"key": "search",
+									"value": "pritam"
+								},
+								{
+									"key": "key",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&where=`price` = 3360",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&where=`price` = 3360",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "search"
+								},
+								{
+									"key": "where",
+									"value": "`price` = 3360"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&limit=5&offset=1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&info=search&limit=5&offset=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "info",
+									"value": "search"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -304,6 +530,55 @@
 								{
 									"key": "id",
 									"value": "31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Option",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&action=OPTIONS",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sql\": \"SELECT * FROM phpdb.products;\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/?dbname=phpdb&tablename=products&action=OPTIONS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								""
+							],
+							"query": [
+								{
+									"key": "dbname",
+									"value": "phpdb"
+								},
+								{
+									"key": "tablename",
+									"value": "products"
+								},
+								{
+									"key": "action",
+									"value": "OPTIONS"
 								}
 							]
 						}

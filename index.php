@@ -38,9 +38,9 @@ try {
                     // case 'PUT':
                     //     doUpdate();
                     //     break;
-                    // case 'OPTIONS':
-                    //     do_option($request);
-                    // break;
+                    case 'OPTIONS':
+                        doOption();
+                        break;
                     // case 'PATCH':
                     //     do_patch($request);
                     // break;
@@ -66,6 +66,9 @@ function doGet()
                 break;
             case 'tabledetails':
                 $sql = 'DESCRIBE ' . $dbname . '.' . $tablename . ';';
+                break;
+            case 'search':
+                $sql = goSearch();
                 break;
             default:
                 break;
@@ -95,6 +98,45 @@ function doGet()
     }
 }
 
+function goSearch()
+{
+    global $dbhost, $dbuser, $dbpass, $dbname, $tablename, $queries;
+    $sqldetail = 'DESCRIBE ' . $dbname . '.' . $tablename . ';';
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    $retval = mysqli_query($conn, $sqldetail);
+    $colArr = array();
+    while ($row = mysqli_fetch_array($retval)) {
+        $colArr[] = $row[0];
+    }
+    $order = ' DESC';
+    if (!empty($queries['order'])) {
+        $order = 'ASC ';
+    }
+    $search = '';
+    if (!empty($queries['where'])) {
+        $search = ' WHERE ' . $queries['where'];
+    } else if (!empty($queries['key']) && !empty($queries['search'])) {
+        $search = ' WHERE `' . $queries['key'] . '` = \'' . $queries['search'] . '\' ';
+    } else if (!empty($queries['search'])) {
+        $search = ' WHERE ';
+        foreach ($colArr as $value) {
+            $search = $search . '`' . $value . '` LIKE \'' . $queries['search'] . '%\' or ';
+        }
+        $search = substr($search, 0, (strlen($search) - 3));
+    }
+    $limitoffset = '';
+    $offset = '';
+    if (!empty($queries['limit'])) {
+        $limitoffset = ' LIMIT ' . $queries['limit'];
+        if (!empty($queries['offset'])) {
+            $limitoffset = $limitoffset . ' OFFSET ' . $queries['offset'];
+        }
+    }
+    $sql = 'SELECT * FROM ' . $dbname . '.' . $tablename . $search . ' ORDER BY ' . $colArr[0] . ' ' . $order . $limitoffset . ';';
+    // httpresponse(200, $sql, null);
+    return $sql;
+}
+
 function doDelete()
 {
     global $dbhost, $dbuser, $dbpass, $dbname, $tablename, $queries;
@@ -105,7 +147,7 @@ function doDelete()
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
         $retval = mysqli_query($conn, $sql);
         if (mysqli_affected_rows($conn) == 0) {
-            httpresponse(200, array('status' => 'error', 'msg' => 'Invalid ID'), null);
+            httpresponse(404, null, 'Invalid ID');
         } else {
             httpresponse(200, array('status' => 'ok', 'msg' => 'ID ' . $queries['id'] . ' is deleted'), null);
         }
@@ -138,11 +180,11 @@ function doUpdate()
                 $colty = $colTypeArr[$i];
                 if ((strpos($colty, 'int') !== false) || ((strpos($colty, 'decimal') !== false)) ||
                     (strpos($colty, 'double') !== false) || ((strpos($colty, 'float') !== false))) {
-                        $colty = $body[$value];
+                    $colty = $body[$value];
                 } else {
-                        $colty = '\'' . $body[$value] . '\'';
+                    $colty = '\'' . $body[$value] . '\'';
                 }
-                $colValue = $colValue . '`'.$value.'` = '. $colty . ', ';
+                $colValue = $colValue . '`' . $value . '` = ' . $colty . ', ';
             }
             $i++;
         }
@@ -151,7 +193,7 @@ function doUpdate()
         $sql = 'UPDATE ' . $dbname . '.' . $tablename . ' SET ' . $colValue . ' WHERE `' . $colIDName . '` = ' . $queries['id'] . ';';
         // httpresponse(200, $sql, null);
         $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-        if(mysqli_query($conn, $sql)){
+        if (mysqli_query($conn, $sql)) {
             $HttpStausCode = 204;
             if (mysqli_affected_rows($conn) == 1) {
                 $HttpStausCode = 200;
@@ -160,7 +202,7 @@ function doUpdate()
             $retval = mysqli_query($conn, $sql);
             httpresponse($HttpStausCode, mysqli_fetch_object($retval), null);
         } else {
-            httpresponse(200, array('status' => 'error', 'msg' => mysqli_error($conn), 'sql' => $sql), null);
+            httpresponse(404, null, mysqli_error($conn) . '\n Invalid SQL Query = ' . $sql);
         }
     }
 }
@@ -207,6 +249,28 @@ function doCreate($colArr, $colTypeArr, $body)
     }
 }
 
+function doOption()
+{
+    global $dbhost, $dbuser, $dbpass, $dbname, $tablename, $queries;
+    $body = json_decode(file_get_contents('php://input'), true);
+    if (!empty($body['sql'])) {
+        $sql = $body['sql'];
+        $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        $retval = mysqli_query($conn, $sql);
+        if (!$retval) {
+            httpresponse(404, 'sql = ' . $sql, mysqli_error($conn));
+        } else {
+            $rows = array();
+            while ($row = mysqli_fetch_object($retval)) {
+                $rows[] = $row;
+            }
+            httpresponse(200, $rows, null);
+        }
+    } else {
+        httpresponse(404, null, 'Invalid SQL Query');
+    }
+}
+
 function httpresponse($status, $result, $error)
 {
     // https://www.php.net/manual/en/function.http-response-code.php
@@ -214,13 +278,11 @@ function httpresponse($status, $result, $error)
     header('Content-type: application/json');
     $requestStatus = _requestStatus($status);
     header("HTTP/1.1 " . $status . " " . $requestStatus);
-    if ($status == 200 || $status == 201|| $status == 204) {
+    if ($status == 200 || $status == 201 || $status == 204) {
         echo json_encode($result, JSON_PRETTY_PRINT);
-    } else if (!empty($requestStatus)) {
-        echo json_encode(array('status' => 'error', 'msg' => $requestStatus . " - " . $error), JSON_PRETTY_PRINT);
     } else {
         // die('Could not connect: ' . mysql_error());
-        echo json_encode(array('status' => 'error', 'msg' => $error), JSON_PRETTY_PRINT);
+        echo json_encode(array('status' => 'error', 'msg' => $error, 'details' => $result), JSON_PRETTY_PRINT);
     }
 }
 
