@@ -588,6 +588,109 @@
 			]
 		},
 		{
+			"name": "FileUpload",
+			"item": [
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php?path=1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php?path=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								"fileupload.php"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/upload.php",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Pritam/Downloads/pritam.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php?path=145",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								"fileupload.php"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "145"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php?path=pritam.jpg",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/PHPMySQLRestAPIJSON/fileupload.php?path=145&action=DELETE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"PHPMySQLRestAPIJSON",
+								"fileupload.php"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "145"
+								},
+								{
+									"key": "action",
+									"value": "DELETE"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "http://localhost/PHPMySQLRestAPIJSON",
 			"request": {
 				"method": "GET",
