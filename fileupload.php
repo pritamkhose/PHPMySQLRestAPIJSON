@@ -1,9 +1,17 @@
 <?php
 // https://www.w3schools.com/php/php_file_upload.asp
+// https://stackoverflow.com/questions/5879043/php-script-detect-whether-running-under-linux-or-windows
 
 include "HttpResponse.php";
 
-$target_dir = "uploads/";
+// For unix, linux, mac, etc.
+$dir_sep = '/';
+// For Windows
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+    $dir_sep = '\\';
+}
+
+$target_dir = "uploads" . $dir_sep;
 $fileSizeLimit = 8 * 1000 * 1000; // 8 MB
 
 $queries = array();
@@ -33,10 +41,10 @@ try {
 
 function getFileList()
 {
-    global $queries, $target_dir;
+    global $queries, $dir_sep, $target_dir;
 
     if (!empty($queries['path'])) {
-        $target_dir = $target_dir . '\/' . $queries['path'];
+        $target_dir = $target_dir . $dir_sep . $queries['path'];
     }
 
     $files = scandir($target_dir);
@@ -45,11 +53,11 @@ function getFileList()
 
 function deleteFile()
 {
-    global $queries, $target_dir;
+    global $queries, $dir_sep, $target_dir;
     if (empty($queries['path'])) {
         httpresponse(404, empty($queries['file']), 'file name is empty');
     } else {
-        $file = $target_dir . '\/' . $queries['path'];
+        $file = $target_dir . $queries['path'];
         // Check if file already exists
         if (is_dir($file)) {
             delete_dir($file);
@@ -80,7 +88,7 @@ function delete_dir($directory)
 
 function updateFile()
 {
-    global $queries, $target_dir, $fileSizeLimit;
+    global $queries, $dir_sep, $target_dir, $fileSizeLimit;
 
     if ($_FILES == null) {
         httpresponse(500, null, 'empty file not accepted.');
@@ -103,7 +111,7 @@ function updateFile()
         } else {
             // map file within specfic folder if path is given
             if (!empty($queries['path'])) {
-                $target_dir = $target_dir . '\\' . $queries['path'] . '\\';
+                $target_dir = $target_dir . $dir_sep . $queries['path'] . $dir_sep;
             }
             // check target_dir folder exist or not and if not then create it.
             if (!file_exists($target_dir)) {
