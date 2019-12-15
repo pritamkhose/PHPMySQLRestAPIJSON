@@ -14,9 +14,10 @@ try {
         $date = new DateTime();
         httpresponse(200, array('status' => 'ok', 'msg' => 'Server Running @ ' . date('Y-m-d h:i:sa') . ' ' . date_default_timezone_get()), null);
     } else {
-        if (empty($queries['dbname'])) {
-            httpresponse(404, null, 'Database name not provided in query parameter');
-        } else {
+        // if (empty($queries['dbname'])) {
+        //     httpresponse(404, null, 'Database name not provided in query parameter');
+        // } else 
+        {
             if (empty($queries['tablename'])) {
                 httpresponse(404, null, 'Tablename name not provided in query parameter');
             } else {
